@@ -40,10 +40,9 @@ books.get('/seed', (req, res) => {
         }))
 })
 
-books.get('/', (req,res) => {
+books.get('/', (req,res, next) => {
     Book.find()
         .then(foundBooks => {
-            console.log(foundBooks)
             res.send(foundBooks)
         })
         .catch(err => {
@@ -54,7 +53,6 @@ books.get('/', (req,res) => {
 books.get('/:id', (req,res) => {
     Book.findById(req.params.id)
         .then(foundBook => {
-            console.log(foundBook)
             res.send(foundBook)
         })
         .catch(err => {
